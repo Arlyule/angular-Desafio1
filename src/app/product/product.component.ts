@@ -1,11 +1,15 @@
 import { Component,Input } from '@angular/core';
 import { products, Product } from '../products';
 import { CartService } from '../cart.service';
+import { MessageService } from "primeng/api";
+import { PrimeNGConfig } from "primeng/api";
+
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  providers: [MessageService]
 })
 
 
@@ -14,12 +18,17 @@ export class ProductComponent {
   products = products;
   @Input() product!:Product;
 
-  constructor(private cartService:CartService){}
+  constructor(private cartService:CartService,private messageService: MessageService,
+    private primengConfig: PrimeNGConfig){}
 
 
   addToCart(product: Product) {
       this.cartService.addToCart(product);
-      window.alert('Your product has been added to the cart!');
+      this.messageService.add({
+        severity: "success",
+        detail: "Se agrega al carrito de compras",
+      });
+  
     }
 
   share() {
@@ -36,5 +45,8 @@ export class ProductComponent {
         this.display = true;
     }
 
-    
+    ngOnInit() {
+      this.primengConfig.ripple = true;
+    }
+  
 }

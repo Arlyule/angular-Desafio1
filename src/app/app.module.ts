@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DialogModule} from 'primeng/dialog';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { CartComponent } from './cart/cart.component';
     RouterModule.forRoot([{ path: '', component: ProductListComponent }]),
     BrowserAnimationsModule,
     DialogModule,
+    ToastModule,
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },
